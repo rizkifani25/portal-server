@@ -3,8 +3,6 @@ const mongoose = require("mongoose");
 const accountModel = require("../../models/user");
 const postModel = require("../../models/post");
 
-const customerModel = require("../../models/customer");
-
 // user login
 exports.login = async (req, res) => {
   const { username, password } = req.query;
@@ -224,66 +222,6 @@ exports.updateUserProfile = async (req, res) => {
     .catch((err) => {
       res.status(400).send({
         message: err,
-      });
-    });
-};
-
-// customer
-exports.addData = async (req, res) => {
-  const { name, data } = req.query;
-
-  const newData = new customerModel({
-    _id: new mongoose.Types.ObjectId(),
-    name_customer: name,
-    desc_customer: data,
-  });
-
-  newData
-    .save()
-    .then((data) => {
-      res.status(200).send({
-        message: "Berhasil menambahkan.",
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send({
-        message: "Kesalahan server. Gagal membuat user baru.",
-      });
-    });
-};
-
-exports.allCustomer = async (req, res) => {
-  customerModel
-    .find()
-    .exec()
-    .then((data) => {
-      res.status(200).send({
-        data: data,
-      });
-    })
-    .catch((err) => {
-      res.status(400).send({
-        message: "Kesalahan server. Gagal memuat customer",
-      });
-    });
-};
-
-exports.deleteCustomer = async (req, res) => {
-  const { name, data } = req.query;
-
-  customerModel
-    .deleteOne({ name_customer: name, desc_customer: data })
-    .exec()
-    .then((data) => {
-      res.status(200).send({
-        message: "Berhasil menghapus customer.",
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send({
-        message: "Kesalahan server. Gagal menghapus customer.",
       });
     });
 };

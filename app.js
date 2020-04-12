@@ -15,12 +15,6 @@ const userCreatePostRouter = require("./routes/user/create-post");
 const updateUserProfileRouter = require("./routes/user/update-profile");
 const userDeletePostRouter = require("./routes/user/delete-post");
 
-// customer
-const customerRouter = require("./routes/customer/create");
-const getAllCustomerRouter = require("./routes/customer/all");
-const updateCustomerRouter = require("./routes/customer/update");
-const deleteCustomerRouter = require("./routes/customer/delete");
-
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
@@ -72,12 +66,6 @@ app.use(endpoint.GET_USER_POST, getUserPostRouter);
 app.use(endpoint.ADD_POST, userCreatePostRouter);
 app.use(endpoint.DELETE_POST, userDeletePostRouter);
 app.use(endpoint.UPDATE_USER_DATA, updateUserProfileRouter);
-
-// customer
-app.use(endpoint.ADD_CUSTOMER, customerRouter);
-app.use(endpoint.GET_CUSTOMER, getAllCustomerRouter);
-// app.use(endpoint.UPDATE_CUSTOMER, updateCustomerRouter);
-app.use(endpoint.DELETE_CUSTOMER, deleteCustomerRouter);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
